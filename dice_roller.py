@@ -1,4 +1,18 @@
+from flask import Flask, render_template, request
+from flaskwebgui import FlaskUI
+
 import random as random
+
+app = Flask(__name__)
+
+@app.route('/')
+def my_form():
+    return render_template('index.html')
+
+@app.route('/', methods=['POST'])
+def my_form_post():
+    variable = request.form['variable']
+    return variable
 
 def randRoll(roll):
     return random.randrange(1, roll + 1, 1)
@@ -15,4 +29,6 @@ def main():
     return
 
 if(__name__ == "__main__"):
-    main()
+    # main()
+    # FlaskUI(app, width=500, height=500).run()
+    app.run()
